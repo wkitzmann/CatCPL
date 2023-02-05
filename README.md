@@ -1,15 +1,19 @@
 # CatCPL
 **CatCPL** (**C**lean **A**nalyis **T**ool for **C**ircularly **P**olarized **L**uminescence) is a software that controls a PEM-based CPL spectrometer.
 
-Author: Winald R. Kitzmann
+*Author:* Winald R. Kitzmann
 
-CatCPL is distributed under the GNU General Public License 3.0 (see LICENSE).
+CatCPL is distributed under the *GNU General Public License 3.0* (see LICENSE).
 
-Main citation for CatCPL: XX
+*Main citation for CatCPL:* XX
 
 ## Usage
 
 Download *catcpl.ipynb* as well as the folders *gui* and *data*. Open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found here: XX.
+
+The software was developed and tested with
+Jupyter XX
+Python XX
 
 ## External code
 
