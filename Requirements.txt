@@ -1,0 +1,15 @@
+pyvisa
+zhinst
+time
+re
+math
+numpy
+threading
+collections
+pandas
+tkinter
+os
+statistics
+scipy
+queue
+matplotlib
