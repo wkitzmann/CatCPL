@@ -1,5 +1,5 @@
 # CatCPL
-**CatCPL** (**C**lean **A**nalyis **T**ool for **C**ircularly **P**olarized **L**uminescence) is a software that controls a PEM-based CPL spectrometer.
+**CatCPL** (**C**lean **A**nalyis **T**ool for **C**ircularly **P**olarized **L**uminescence) is a software that controls a PEM-based CPL spectrometer and applies the necessary corrections to the data.
 
 *Author:* Winald R. Kitzmann
 
