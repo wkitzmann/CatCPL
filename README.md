@@ -1,5 +1,5 @@
 # CatCPL
-CatCPL (Clean Analyis Tool for Circularly Polarized Luminescence) is a software that controls a PEM-based CPL spectrometer.
+**CatCPL** (**C**lean **A**nalyis **T**ool for **C**ircularly **P**olarized **L**uminescence) is a software that controls a PEM-based CPL spectrometer.
 
 Author: Winald R. Kitzmann
 
@@ -9,10 +9,11 @@ Main citation for CatCPL: XX
 
 ## Usage
 
+Download *catcpl.ipynb* as well as the folders *gui* and *data*. Open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found here: XX.
 
-A detailed explanation of the usage of CatCPL can be found here: XX
+## External code
 
-## Requirements
+The user interface of CatCPL was created using [TkDesigner](https://github.com/ParthJadhav/Tkinter-Designer/) licensened under BSD 3-Clause "New" or "Revised" License (see catcpl/gui/tkdesigner_license).
 
 ## Disclaimer
 
