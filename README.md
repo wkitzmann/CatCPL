@@ -9,11 +9,21 @@ CatCPL is distributed under the *GNU General Public License 3.0* (see LICENSE).
 
 ## Usage
 
-Download *catcpl.ipynb* as well as the folders *gui* and *data*. Open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found here: XX.
+Download *catcpl.ipynb* or *catcpl.py* as well as the folders *gui* and *data*. Run *catcpl.py* with python or open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found here: XX.
 
 The software was developed and tested with
-Jupyter XX
-Python XX
+*Jupyter 6.4.8
+*IPython 8.2.0
+*Python 3.9.12
+*matplotlib 3.5.1
+*numpy 1.21.5
+*pandas 1.4.2
+*pyusb 1.2.1
+*PyVISA 1.12.0
+*scipy 1.7.3
+*tk 0.1.0
+*zhinst 22.2.29711
+
 
 ## External code
 
