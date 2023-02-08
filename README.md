@@ -3,7 +3,7 @@
 
 *Author:* Winald R. Kitzmann
 
-CatCPL is distributed under the *GNU General Public License 3.0* (see LICENSE).
+CatCPL is distributed under the *GNU General Public License 3.0* (see [LICENSE](https://github.com/wkitzmann/CatCPL/blob/2761220d5292317031ec074c5b96f594c26bb899/LICENSE)).
 
 *Main citation for CatCPL:* XX
 
@@ -27,7 +27,7 @@ The software was developed and tested with
 
 ## External code
 
-The user interface of CatCPL was created using [TkDesigner](https://github.com/ParthJadhav/Tkinter-Designer/) licensened under BSD 3-Clause "New" or "Revised" License (see catcpl/gui/tkdesigner_license).
+The user interface of CatCPL was created using [TkDesigner](https://github.com/ParthJadhav/Tkinter-Designer/) licensened under BSD 3-Clause "New" or "Revised" License (see [tkdesigner_license](https://github.com/wkitzmann/CatCPL/blob/2761220d5292317031ec074c5b96f594c26bb899/catcpl/gui/TKDesigner_LICENSE)).
 
 ## Disclaimer
 
