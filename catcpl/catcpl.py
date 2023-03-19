@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 # **CatCPL v1.0**
 # https://github.com/wkitzmann/CatCPL/
 # 
@@ -12,7 +15,7 @@
 # **Disclaimer**:
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# In[40]:
+# In[37]:
 
 
 import pyvisa
@@ -37,14 +40,14 @@ import gui.gui_script
 #InteractiveShell.ast_node_interactivity = "all"
 
 
-# In[41]:
+# In[38]:
 
 
 class ECommError(Exception):
     pass
 
 
-# In[42]:
+# In[39]:
 
 
 class LogObject():
@@ -104,7 +107,7 @@ class LogObject():
         pass
 
 
-# In[43]:
+# In[40]:
 
 
 class VisaDevice(LogObject):  
@@ -134,7 +137,7 @@ class VisaDevice(LogObject):
         initialized = False
 
 
-# In[44]:
+# In[41]:
 
 
 class PEM(VisaDevice):
@@ -207,10 +210,8 @@ class PEM(VisaDevice):
                 else:
                     success = (r.group(1) == grp)
             except pyvisa.VisaIOError as e:
-                self.log("{}: {:d}) Error with query {}: {}.".format(self.name,i+1,q,str(e)),True)
+                self.log("{}: {:d}) Error with query {}: {}.".format(self.name,i,q,str(e)),True)
                 success = False
-                i += 1
-                pass
         if not success:
             raise ECommError("Error @{}: Error with query {} (tried {:d} times).".format(self.name,q,i),True)
         else:
@@ -248,12 +249,7 @@ class PEM(VisaDevice):
         return self.extract_value(self.get_amp_raw())    
        
     def set_amp(self,f:float) -> str:
-        #debug bypass
-        #return self.retry_query(q=':MOD:AMP {:.2f}'.format(f),grp='AMP',isSet=True,value=f,isFloat=True)
-        self.log_ask(':MOD:AMP {:.2f}'.format(f))
-        self.inst.write(':MOD:AMP {:.2f}'.format(f))
-        time.sleep(0.1)
-        return "PEM answer bypassed"
+        return self.retry_query(q=':MOD:AMP {:.2f}'.format(f),grp='AMP',isSet=True,value=f,isFloat=True)
         
     def get_amp_range_raw(self) -> str:
         return self.retry_query(q=':MOD:AMPR?',grp='AMPR')
@@ -276,10 +272,8 @@ class PEM(VisaDevice):
         return self.retry_query(q=':MOD:DRV {:.2f}'.format(f),grp='DRIVE',isSet=True,value=f,isFloat=True)
 
     #Sets wavelength and returns current wavelength value
-    #debug bypass
     def set_nm(self,nm:float) -> str:
-        #return self.extract_value(self.set_amp(nm*self.retardation))        
-        return self.set_amp(nm*self.retardation)    
+        return self.extract_value(self.set_amp(nm*self.retardation))        
     
     def get_nm(self,nm:float) -> str:
         return float(self.get_amp())/self.retardation
@@ -301,7 +295,7 @@ class PEM(VisaDevice):
         return self.retry_query(q=':SYS:VC?',grp='VC')
 
 
-# In[45]:
+# In[42]:
 
 
 class Mono(VisaDevice):
@@ -353,15 +347,13 @@ class Mono(VisaDevice):
         i = 0
         s = ""
         while (not success) and (i < n):
+            i += 1
             try:
                 s = self.log_query(q)
                 success = self.ok in s
-                i += 1
             except pyvisa.VisaIOError as e:
-                self.log("{:d}) Error with query {} @{}: {}.".format(i+1,q,self.name,str(e)),True)
+                self.log("{:d}) Error with query {} @{}: {}.".format(i,q,self.name,str(e)),True)
                 success = False
-                i += 1
-                pass
         if not success:
             raise ECommError("Error @{} with query {} (tried {:d} times).".format(self.name,q,i),True)
         else:
@@ -380,26 +372,7 @@ class Mono(VisaDevice):
         return self.retry_query('{:.2f} GOTO'.format(nm))
 
 
-# In[46]:
-
-
-#mono = Mono()
-#mono.initialize(rm)
-
-
-# In[47]:
-
-
-#mono.set_nm(650)
-
-
-# In[48]:
-
-
-#mono.close()
-
-
-# In[49]:
+# In[43]:
 
 
 #Controls the Zurich Instruments MFLI lock-in amplifier
@@ -877,7 +850,7 @@ class MFLI(LogObject):
             
 
 
-# In[50]:
+# In[44]:
 
 
 #Dialog that guides the user through the phase offset calibration
@@ -1035,12 +1008,12 @@ class PhaseOffsetCalibrationDialog(LogObject):
     
 
 
-# In[51]:
+# In[45]:
 
 
 #Combines the individual components and controls the main window
 class Controller(LogObject):
-    version = '1.0'
+    version = '1.0.1'
     
     lowpass_filter_risetime = 0.6 #s, depends on the timeconstant of the low pass filter
     shutdown_threshold = 2.95 #Vl
@@ -1124,7 +1097,7 @@ class Controller(LogObject):
         self.log_queue = queue.Queue()
         self.log_box = self.gui.edt_debuglog
         self.assign_gui_events()
-        
+    
         if os.path.exists("last_params.txt"):
             self.load_last_settings()
         
@@ -1151,7 +1124,7 @@ class Controller(LogObject):
                 return ''
             else:
                 return res.group(1)            
-       
+            
         f = open('last_params.txt', 'r')
         s = f.read()
         f.close()
@@ -1440,6 +1413,8 @@ class Controller(LogObject):
 
     def set_phaseoffset_from_edt(self):
         try:
+            #if slef.gui.edt_phaseoffset.get() == '':
+             #   po = 0
             po = float(self.gui.edt_phaseoffset.get())
             self.set_phaseoffset(po)
             self.gui.edt_phaseoffset.config(bg='#FFFFFF')
@@ -2044,12 +2019,10 @@ class Controller(LogObject):
             mono_thread.start()
             
             if move_pem:
-                t1 = time.time()
                 self.pem_lock.acquire()
                 self.pem.set_nm(nm)   
                 self.pem_lock.release()
                 self.update_pem_lbl(nm)
-                print('PEM: {}'.format(t1-time.time()))
                 
             while mono_thread.is_alive():
                 time.sleep(0.02)
@@ -2064,11 +2037,9 @@ class Controller(LogObject):
             self.log('Instruments not initialized!',True)
     
     def mono_move(self,nm):
-        t0 = time.time()
         self.mono_lock.acquire()
         self.mono.set_nm(nm)
         self.mono_lock.release()
-        print(time.time()-t0)
     
     def volt_to_gain(self,volt):
         return 10**(volt*self.pmt_slope + self.pmt_offset)/self.gain_norm
@@ -2279,7 +2250,7 @@ class Controller(LogObject):
     #---Phase offset calibration section end---
 
 
-# In[52]:
+# In[46]:
 
 
 ctr = Controller()
