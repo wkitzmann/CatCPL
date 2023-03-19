@@ -982,6 +982,7 @@ class GUI():
             width=55.0,
             height=22.0
         )
+        self.edt_phaseoffset.insert(0,'0')
 
         self.entry_image_14 = PhotoImage(
             file=self.relative_to_assets("entry_14.png"),master=self.window)
