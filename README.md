@@ -5,11 +5,12 @@
 
 CatCPL is distributed under the *GNU General Public License 3.0* (see [LICENSE](https://github.com/wkitzmann/CatCPL/blob/2761220d5292317031ec074c5b96f594c26bb899/LICENSE)).
 
-*Main citation for CatCPL:* XX
+*Main citation for CatCPL:* 
+Winald R. Kitzmann, John Freudenthal, Antti-Pekka M. Reponen, Zachary A. VanOrman, Sascha Feldmann, *Adv. Mater.* **2023**, *accepted*. [DOI: 10.1002/adma.202302279](https://doi.org/10.1002/adma.202302279) 
 
 ## Usage
 
-Download *catcpl.ipynb* or *catcpl.py* as well as the folders *gui* and *data*. Run *catcpl.py* with python or open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found here: XX.
+Download *catcpl.ipynb* or *catcpl.py* as well as the folders *gui* and *data*. Run *catcpl.py* with python or open *catcpl.ipynb* using Jupyter Notebook and run all cells. A detailed explanation of the usage of CatCPL can be found in the open access paper referenced above.
 
 The software was developed and tested with
 * Jupyter 6.4.8
