@@ -9,7 +9,7 @@ CatCPL is distributed under the *GNU General Public License 3.0* (see [LICENSE](
 
 *Main citation for CatCPL (open access):* 
 
-Winald R. Kitzmann, John Freudenthal, Antti-Pekka M. Reponen, Zachary A. VanOrman, Sascha Feldmann, *Adv. Mater.* **2023**, *accepted*. [DOI: 10.1002/adma.202302279](https://doi.org/10.1002/adma.202302279) 
+Winald R. Kitzmann, John Freudenthal, Antti-Pekka M. Reponen, Zachary A. VanOrman, Sascha Feldmann, *Adv. Mater.* **2023**, *35*, 2302279. [DOI: 10.1002/adma.202302279](https://doi.org/10.1002/adma.202302279) 
 
 ## Usage
 
